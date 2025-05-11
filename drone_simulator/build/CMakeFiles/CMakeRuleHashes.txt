@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+7c63eadebcc4300636326d43c0d9e3bc drone.pb.h

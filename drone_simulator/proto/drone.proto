@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+enum CommandType {
+    TAKEOFF = 0;
+    MOVE = 1;
+    ROTATE = 2;
+    LAND = 3;
+    STATUS = 4;
+}
+
+message DroneCommand {
+    CommandType command = 1;
+    
+    oneof parameters {
+        MoveParameters move = 2;
+        RotateParameters rotate = 3;
+    }
+}
+
+message MoveParameters {
+    float x = 1;
+    float y = 2;
+    float z = 3;
+    float speed = 4;
+}
+
+message RotateParameters {
+    float yaw = 1;
+    float pitch = 2;
+    float roll = 3;
+    float speed = 4;
+}
+
+message DroneResponse {
+    bool success = 1;
+    string message = 2;
+}
