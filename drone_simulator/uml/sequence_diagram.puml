@@ -1,0 +1,28 @@
+@startuml
+
+actor Client
+participant "SocketClient" as client
+participant "CommandFactory" as factory
+participant "DroneState" as state
+participant "SocketServer" as server
+
+Client -> client: connect()
+activate client
+
+Client -> client: sendCommand()
+client -> factory: createCommand()
+factory --> client: return Command
+
+client -> state: executeCommand()
+state -> state: updateState()
+state --> client: return Response
+
+deactivate client
+
+client -> server: sendCommand()
+server -> server: processCommand()
+server --> client: return Response
+
+deactivate server
+
+@enduml
